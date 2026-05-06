@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<style>
+    .dashboard-header {
+        margin-bottom: 2rem;
+    }
+    
+    .dashboard-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 0.5rem;
+    }
+    
+    .dashboard-subtitle {
+        color: #6b7280;
+        font-size: 0.95rem;
+    }
+    
+    .quick-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .btn-action {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: #ffffff;
+        color: #374151;
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-action:hover {
+        border-color: #6366f1;
+        color: #4f46e5;
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
+        transform: translateY(-1px);
+    }
+    
+    .btn-action svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .btn-action-primary {
+        background: #4f46e5;
+        color: #ffffff;
+        border-color: #4f46e5;
+    }
+    
+    .btn-action-primary:hover {
+        background: #4338ca;
+        border-color: #4338ca;
+        color: #ffffff;
+    }
+</style>
+
+<div class="dashboard-header">
+    <h1 class="dashboard-title">Panel Principal</h1>
+    <p class="dashboard-subtitle">Resumen general del sistema de gestión</p>
+</div>
+
+<div class="stats">
+    <div class="stat-card">
+        <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+        </div>
+        <h3>{{ total_departamentos }}</h3>
+        <p>Departamentos</p>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        </div>
+        <h3>{{ total_empleados }}</h3>
+        <p>Empleados</p>
+    </div>
+</div>
+
+<div class="quick-actions">
+    <a href="{% url 'departamento_lista' %}" class="btn-action">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+        Gestionar Departamentos
+    </a>
+    <a href="{% url 'empleado_lista' %}" class="btn-action btn-action-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+        </svg>
+        Gestionar Empleados
+    </a>
+</div>
+{% endblock %}

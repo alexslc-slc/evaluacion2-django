@@ -1,0 +1,6 @@
+django
+mysqlclient
+Pillow
+gunicorn
+whitenoise
+dj-database-url

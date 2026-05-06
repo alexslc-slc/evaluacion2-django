@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Eliminar Empleado{% endblock %}
+
+{% block contenido %}
+<style>
+    .delete-container {
+        max-width: 480px;
+        margin: 2rem auto;
+    }
+    
+    .delete-card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+    
+    .warning-icon {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 1.5rem;
+        background: #fef3c7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .warning-icon svg {
+        width: 28px;
+        height: 28px;
+        color: #d97706;
+    }
+    
+    .delete-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 0.75rem;
+    }
+    
+    .delete-message {
+        color: #6b7280;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+    }
+    
+    .delete-message strong {
+        color: #374151;
+        font-weight: 600;
+    }
+    
+    .delete-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .btn-delete {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.5rem;
+        background: #dc2626;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        font-family: inherit;
+    }
+    
+    .btn-delete:hover {
+        background: #b91c1c;
+    }
+    
+    .btn-delete svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .btn-cancel {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.5rem;
+        background: #f9fafb;
+        color: #374151;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    
+    .btn-cancel:hover {
+        background: #f3f4f6;
+        border-color: #9ca3af;
+    }
+    
+    .btn-cancel svg {
+        width: 18px;
+        height: 18px;
+    }
+</style>
+
+<div class="delete-container">
+    <div class="delete-card">
+        <div class="warning-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+        </div>
+        
+        <h2 class="delete-title">Confirmar eliminación</h2>
+        
+        <p class="delete-message">
+            ¿Está seguro que desea eliminar al empleado <strong>{{ empleado.nombres }} {{ empleado.apellidos }}</strong>?<br>
+            Esta acción no se puede deshacer.
+        </p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="delete-actions">
+                <button type="submit" class="btn-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    Sí, Eliminar
+                </button>
+                <a href="{% url 'empleado_lista' %}" class="btn-cancel">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
