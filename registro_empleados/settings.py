@@ -112,3 +112,11 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuración CSRF para Railway
+CSRF_TRUSTED_ORIGINS = [
+    'https://evaluacion2-django-production.up.railway.app',
+    'http://evaluacion2-django-production.up.railway.app',
+    'https://*.up.railway.app',
+    'http://*.up.railway.app',
+]
